@@ -3,6 +3,7 @@
 const { Command } = require('commander');
 const chalk = require('chalk');
 const CCRotate = require('../lib/ccrotate');
+const { version } = require('../package.json');
 
 const program = new Command();
 const ccrotate = new CCRotate();
@@ -10,7 +11,7 @@ const ccrotate = new CCRotate();
 program
   .name('ccrotate')
   .description('A simple CLI tool to manage and rotate multiple Claude Code accounts, helping you bypass rate limits')
-  .version('1.0.0');
+  .version(version, '-v, -V, --version', 'output the version number');
 
 program
   .command('snap')
