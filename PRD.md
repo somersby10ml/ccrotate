@@ -33,10 +33,10 @@
 
 **A. `ccrotate snap` : 계정 정보 스냅샷**
 
-- **고유 식별자:** 계정의 **이메일 주소**를 고유 키로 사용한다.
+- **고유 식별자:** 계정의 **이메일 주소**를 고유 키로 사용한다. (`~/.claude.json`의 `oauthAccount.emailAddress` 필드에서 추출)
 - **수집 대상:**
     - `~/.claude/.credentials.json` 파일의 전체 내용
-    - `~/.claude.json` 파일의 `userId` `oauthAccount` 필드
+    - `~/.claude.json` 파일의 `userId` 및 `oauthAccount` 필드 전체
 - **동작:**
     1. 현재 활성화된 계정의 이메일과 수집 대상 파일/필드 정보를 읽어온다.
     2. 동일 이메일이 이미 존재하면, 사용자에게 덮어쓰기 여부를 확인 (`y/N`) 후 업데이트한다. `--force` 플래그로 확인 절차를 생략할 수 있다.
@@ -75,12 +75,16 @@
     ```json
     {
       "user1@example.com": {
-        "credentials": { "...(credentials.json 내용)..." },
-        "oauthAccount": "...(userId, oauthAccount 값)..."
+        "credentials": { "...(credentials.json 전체 내용)..." },
+        "userId": "...(사용자 ID)...",
+        "oauthAccount": { "emailAddress": "user1@example.com", "...(기타 OAuth 정보)..." },
+        "lastUsed": "2024-01-01T00:00:00.000Z"
       },
       "user2@example.com": {
-        "credentials": { "...(credentials.json 내용)..." },
-        "oauthAccount": "...(userId, oauthAccount 값)..."
+        "credentials": { "...(credentials.json 전체 내용)..." },
+        "userId": "...(사용자 ID)...",
+        "oauthAccount": { "emailAddress": "user2@example.com", "...(기타 OAuth 정보)..." },
+        "lastUsed": "2024-01-02T00:00:00.000Z"
       }
     }
     ```
