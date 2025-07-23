@@ -2,26 +2,26 @@
   "name": "ccrotate",
   "version": "1.0.0",
   "description": "A simple CLI tool to manage and rotate multiple Claude Code accounts, helping you bypass rate limits",
-  "keywords": ["claude", "cli", "account-management", "rate-limit", "claude-code"],
-  "license": "MIT",
-  "author": "somersby10ml",
-  "main": "index.js",
-  "bin": {
-    "ccrotate": "./bin/ccrotate.js"
+  "keywords": [
+    "claude",
+    "cli",
+    "account-management",
+    "rate-limit",
+    "claude-code"
+  ],
+  "homepage": "https://github.com/somersby10ml/ccrotate",
+  "bugs": {
+    "url": "https://github.com/somersby10ml/ccrotate/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/somersby10ml/ccrotate.git"
   },
-  "homepage": "https://github.com/somersby10ml/ccrotate",
-  "bugs": {
-    "url": "https://github.com/somersby10ml/ccrotate/issues"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "license": "MIT",
+  "author": "somersby10ml",
+  "main": "index.js",
+  "bin": {
+    "ccrotate": "./bin/ccrotate.js"
   },
   "files": [
     "bin/",
@@ -29,10 +29,16 @@
     "index.js",
     "README.md"
   ],
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "commander": "^9.4.1",
-    "prompts": "^2.4.2"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "packageManager": "pnpm@10.13.1"
+  "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "14.0.0",
+    "prompts": "2.4.2"
+  },
+  "packageManager": "pnpm@10.13.1",
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
