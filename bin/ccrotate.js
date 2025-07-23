@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 
-const { Command } = require('commander');
-const chalk = require('chalk');
-const CCRotate = require('../lib/ccrotate');
-const { version } = require('../package.json');
+import { Command } from 'commander';
+import chalk from 'chalk';
+import CCRotate from '../lib/ccrotate.js';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'));
+const { version } = packageJson;
 
 const program = new Command();
 const ccrotate = new CCRotate();

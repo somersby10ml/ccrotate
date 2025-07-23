@@ -33,11 +33,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "chalk": "4.1.2",
+    "chalk": "5.4.1",
     "commander": "14.0.0",
     "prompts": "2.4.2"
   },
   "packageManager": "pnpm@10.13.1",
+  "type": "module",
   "engines": {
     "node": ">=14.0.0"
   }

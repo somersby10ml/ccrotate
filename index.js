@@ -1,3 +1,3 @@
-const CCRotate = require('./lib/ccrotate');
+import CCRotate from './lib/ccrotate.js';
 
-module.exports = CCRotate;
+export default CCRotate;
