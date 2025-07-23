@@ -9,7 +9,7 @@ const ccrotate = new CCRotate();
 
 program
   .name('ccrotate')
-  .description('CLI tool for managing multiple Claude accounts to handle rate limits')
+  .description('A simple CLI tool to manage and rotate multiple Claude Code accounts, helping you bypass rate limits')
   .version('1.0.0');
 
 program
