@@ -1,18 +1,38 @@
 {
   "name": "ccrotate",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "CLI tool for managing multiple Claude accounts to handle rate limits",
+  "keywords": ["claude", "cli", "account-management", "rate-limit", "claude-code"],
   "license": "MIT",
-  "author": "",
+  "author": "somersby10ml",
   "main": "index.js",
+  "bin": {
+    "ccrotate": "./bin/ccrotate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/somersby10ml/ccrotate.git"
+  },
+  "homepage": "https://github.com/somersby10ml/ccrotate",
+  "bugs": {
+    "url": "https://github.com/somersby10ml/ccrotate/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "bin/",
+    "lib/",
+    "index.js",
+    "README.md"
+  ],
   "dependencies": {
-    "chalk": "5.4.1",
-    "commander": "14.0.0",
-    "prompts": "2.4.2"
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "prompts": "^2.4.2"
   },
   "packageManager": "pnpm@10.13.1"
 }
