@@ -1,6 +1,6 @@
 {
   "name": "ccrotate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple CLI tool to manage and rotate multiple Claude Code accounts, helping you bypass rate limits",
   "keywords": [
     "claude",
