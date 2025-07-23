@@ -11,7 +11,7 @@ const ccrotate = new CCRotate();
 program
   .name('ccrotate')
   .description('A simple CLI tool to manage and rotate multiple Claude Code accounts, helping you bypass rate limits')
-  .version(version, '-v, -V, --version', 'output the version number');
+  .version(version, '-v, --version', 'output the version number');
 
 program
   .command('snap')
