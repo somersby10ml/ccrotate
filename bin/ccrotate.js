@@ -83,6 +83,19 @@ program
     }
   });
 
+program
+  .command('refresh')
+  .alias('rf')
+  .description('Test all accounts and refresh tokens')
+  .action(async () => {
+    try {
+      await ccrotate.refresh();
+    } catch (error) {
+      console.error(chalk.red(`Error: ${error.message}`));
+      process.exit(1);
+    }
+  });
+
 program.parse();
 
 if (!process.argv.slice(2).length) {
