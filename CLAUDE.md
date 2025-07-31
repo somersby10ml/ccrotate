@@ -18,9 +18,9 @@ The project follows a modern CLI architecture with optimized distribution:
 - **Utilities**: `lib/utils/*.js` - Helper functions and utilities
 
 ### Production Distribution
-- **Single Executable**: `dist/cli.js` - Bundled CLI with all dependencies
-- **Zero Dependencies**: Users install no additional packages
-- **Build System**: esbuild for fast bundling and minification
+- **Single Executable**: `dist/cli.js` - CLI with external runtime dependencies
+- **Minimal Dependencies**: Only essential packages (React Ink, Commander, Chalk) installed
+- **Build System**: esbuild with `packages: 'external'` for optimal bundling
 
 ### Key Components
 
@@ -107,7 +107,7 @@ pnpm run publish:dist
 
 ## Dependencies
 
-### Runtime Dependencies (bundled in dist/cli.js)
+### Runtime Dependencies (external, installed via npm)
 - `chalk` - Terminal colors and styling
 - `commander` - CLI framework
 - `prompts` - Interactive prompts for confirmations
@@ -129,5 +129,5 @@ pnpm run publish:dist
 - Export/import uses MessagePack + Gzip + Base64 for efficient compression
 - CRC32 verification ensures data integrity during import
 - Account testing uses actual claude calls to verify token validity
-- Build system creates single executable with all dependencies bundled
+- Build system creates single executable with external runtime dependencies
 - Distribution via `dist/` directory publishing (not root package.json)

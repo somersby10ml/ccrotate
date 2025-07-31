@@ -18,7 +18,7 @@ A powerful CLI tool designed for `claude-code` users who need to manage multiple
 - 🔄 **Account Testing** - Verify and refresh tokens automatically
 - 🎨 **Beautiful CLI** - Colorful, intuitive interface with clear feedback
 - ⚡ **Lightning Fast** - Quick account switches without losing context
-- 📦 **Optimized Distribution** - Single bundled executable with zero dependencies
+- 📦 **Optimized Distribution** - Single executable with minimal runtime dependencies
 
 ## 🚀 Quick Start
 
@@ -185,10 +185,10 @@ pnpm run publish:dist
 
 ccrotate uses **esbuild** for optimized distribution:
 
-- **Source**: `bin/ccrotate.js` + `lib/` directory
-- **Output**: Single `dist/cli.js` executable with all dependencies bundled
-- **Zero dependencies**: Users don't install any dependencies
-- **Package size**: ~27KB unpacked, ~9KB compressed
+- **Source**: `bin/ccrotate.js` + `lib/` directory  
+- **Output**: Single `dist/cli.js` executable with external runtime dependencies
+- **Optimized dependencies**: Only core libraries (React Ink, Commander, Chalk) are installed
+- **Package size**: ~15KB unpacked, ~5KB compressed (excluding dependencies)
 
 ## 🤝 Contributing
 
