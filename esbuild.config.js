@@ -2,15 +2,20 @@ import { build } from 'esbuild';
 import fs from 'fs';
 import path from 'path';
 
+const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+
 const baseConfig = {
   entryPoints: ['bin/ccrotate.js'],
   bundle: true,
   platform: 'node',
   target: 'node18',
-  format: 'esm',
+  format: 'esm', 
   outfile: 'dist/cli.js',
   treeShaking: true,
   packages: 'external',
+  define: {
+    'process.env.CCROTATE_VERSION': JSON.stringify(pkg.version)
+  },
   plugins: [
     {
       name: 'clean-and-prepare',
@@ -38,7 +43,6 @@ const baseConfig = {
           });
           
           // Create optimized package.json
-          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
           const distPkg = {
             ...pkg,
             main: 'cli.js',
