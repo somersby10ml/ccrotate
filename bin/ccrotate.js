@@ -96,6 +96,30 @@ program
     }
   });
 
+program
+  .command('export')
+  .description('Export all profiles as compressed string')
+  .action(async () => {
+    try {
+      await ccrotate.export();
+    } catch (error) {
+      console.error(chalk.red(`Error: ${error.message}`));
+      process.exit(1);
+    }
+  });
+
+program
+  .command('import <data>')
+  .description('Import profiles from compressed string')
+  .action(async (data) => {
+    try {
+      await ccrotate.import(data);
+    } catch (error) {
+      console.error(chalk.red(`Error: ${error.message}`));
+      process.exit(1);
+    }
+  });
+
 program.parse();
 
 if (!process.argv.slice(2).length) {

@@ -14,6 +14,7 @@ A powerful CLI tool designed for `claude-code` users who need to manage multiple
 - 📸 **Snapshot Management** - Save your current Claude session instantly
 - 🎯 **Intelligent Switching** - Automatic next-account detection with fallback
 - 💾 **Safe Storage** - Atomic file operations prevent data corruption
+- 📦 **Backup & Restore** - Export/import profiles with compression and integrity checking
 - 🎨 **Beautiful CLI** - Colorful, intuitive interface with clear feedback
 - ⚡ **Lightning Fast** - Quick account switches without losing context
 
@@ -78,6 +79,30 @@ ccrotate remove user@example.com
 # ? Are you sure you want to remove account user@example.com? No / Yes
 ```
 
+### 📤 `ccrotate export`
+Export all saved profiles as a compressed, shell-safe string with CRC verification.
+
+```bash
+ccrotate export
+# ✓ Profiles exported (Shell-Safe compression + CRC verification):
+# 3 accounts: 2146 → 1209 chars (-44%)
+# CRC32: f7dd8ae3 (data integrity guaranteed)
+# 
+# "mp-gz-b64:f7dd8ae3:H4sIAAAAAAAAA5XRT..."
+```
+
+### 📥 `ccrotate import <data>`
+Import profiles from a compressed string with automatic CRC verification.
+
+```bash
+ccrotate import "mp-gz-b64:f7dd8ae3:H4sIAAAAAAAAA5XRT..."
+# ✓ CRC verification passed: f7dd8ae3
+# Found 3 accounts to import:
+# user1@example.com, user2@example.com, user3@example.com
+# ? Do you want to proceed with the import? Yes
+# ✓ Successfully imported 3 accounts.
+```
+
 ## 🏗️ How It Works
 
 ccrotate manages your Claude accounts by:
@@ -86,6 +111,7 @@ ccrotate manages your Claude accounts by:
 2. **Storing** account profiles in `~/.ccrotate/profiles.json`
 3. **Switching** accounts using atomic file operations for safety
 4. **Identifying** accounts by email from `oauthAccount.emailAddress`
+5. **Compressing** data using MessagePack + Gzip + Base64 for efficient backup/restore
 
 ### Data Structure
 
