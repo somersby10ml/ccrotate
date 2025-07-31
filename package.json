@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "author": "somersby10ml",
+  "type": "module",
   "main": "index.js",
   "bin": {
     "ccrotate": "./bin/ccrotate.js"
@@ -30,7 +31,9 @@
     "README.md"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "chalk": "5.4.1",
@@ -39,8 +42,11 @@
     "prompts": "2.4.2",
     "react": "19.1.1"
   },
+  "devDependencies": {
+    "@vitest/ui": "3.2.4",
+    "vitest": "3.2.4"
+  },
   "packageManager": "pnpm@10.13.1",
-  "type": "module",
   "engines": {
     "node": ">=14.0.0"
   }
