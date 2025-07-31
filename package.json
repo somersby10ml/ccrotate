@@ -20,19 +20,14 @@
   "license": "MIT",
   "author": "somersby10ml",
   "type": "module",
-  "main": "index.js",
   "bin": {
-    "ccrotate": "./dist/cli.js"
+    "ccrotate": "./bin/ccrotate.js"
   },
-  "files": [
-    "dist/",
-    "index.js",
-    "README.md"
-  ],
   "scripts": {
     "build": "node -e \"import('./esbuild.config.js').then(({buildProduction}) => buildProduction())\"",
     "build:dev": "node -e \"import('./esbuild.config.js').then(({buildDevelopment}) => buildDevelopment())\"",
-    "prepublishOnly": "npm run build",
+    "publish:dist": "npm run build && cd dist && npm publish",
+    "publish:dist:dry": "npm run build && cd dist && npm pack --dry-run",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui"

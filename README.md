@@ -6,7 +6,7 @@ A powerful CLI tool designed for `claude-code` users who need to manage multiple
 
 [![npm version](https://badge.fury.io/js/ccrotate.svg)](https://badge.fury.io/js/ccrotate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-14+-green.svg)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 
 ## ✨ Features
 
@@ -15,8 +15,10 @@ A powerful CLI tool designed for `claude-code` users who need to manage multiple
 - 🎯 **Intelligent Switching** - Automatic next-account detection with fallback
 - 💾 **Safe Storage** - Atomic file operations prevent data corruption
 - 📦 **Backup & Restore** - Export/import profiles with compression and integrity checking
+- 🔄 **Account Testing** - Verify and refresh tokens automatically
 - 🎨 **Beautiful CLI** - Colorful, intuitive interface with clear feedback
 - ⚡ **Lightning Fast** - Quick account switches without losing context
+- 📦 **Optimized Distribution** - Single bundled executable with zero dependencies
 
 ## 🚀 Quick Start
 
@@ -103,6 +105,17 @@ ccrotate import "mp-gz-b64:f7dd8ae3:H4sIAAAAAAAAA5XRT..."
 # ✓ Successfully imported 3 accounts.
 ```
 
+### 🔄 `ccrotate refresh` (alias: `rf`)
+Test all saved accounts and refresh expired tokens automatically.
+
+```bash
+ccrotate refresh
+# 🔄 Testing accounts and refreshing tokens...
+# 1  user1@example.com  ✅ Active    Hi there! How can I assist you today?
+# 2  user2@example.com  ❌ Failed    Invalid or expired token
+# 3  user3@example.com  ✅ Active 🔄 Hi! I'm Claude, an AI assistant...
+```
+
 ## 🏗️ How It Works
 
 ccrotate manages your Claude accounts by:
@@ -131,9 +144,9 @@ ccrotate manages your Claude accounts by:
 
 ## 🔧 Requirements
 
-- **Node.js** 14.0.0 or higher
+- **Node.js** 18.0.0 or higher
 - **claude-code** CLI tool installed and configured
-- **Windows** or **Linux** (macOS support coming soon!)
+- **Cross-platform** support (Windows, Linux, macOS)
 
 ## ⚠️ Important Notes
 
@@ -147,14 +160,35 @@ ccrotate manages your Claude accounts by:
 # Clone and install
 git clone https://github.com/somersby10ml/ccrotate.git
 cd ccrotate
-npm install
+pnpm install
 
-# Test locally
+# Development build with sourcemap
+pnpm run build:dev
+
+# Production build (minified)
+pnpm run build
+
+# Test locally with source
 node bin/ccrotate.js --help
 
-# Install globally for testing
-npm install -g .
+# Test built CLI
+./dist/cli.js --help
+
+# Package testing (dry-run)
+pnpm run publish:dist:dry
+
+# Publish to npm
+pnpm run publish:dist
 ```
+
+### 🏗️ Build System
+
+ccrotate uses **esbuild** for optimized distribution:
+
+- **Source**: `bin/ccrotate.js` + `lib/` directory
+- **Output**: Single `dist/cli.js` executable with all dependencies bundled
+- **Zero dependencies**: Users don't install any dependencies
+- **Package size**: ~27KB unpacked, ~9KB compressed
 
 ## 🤝 Contributing
 

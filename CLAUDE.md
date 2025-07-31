@@ -8,11 +8,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-The project follows a simple Node.js CLI architecture:
+The project follows a modern CLI architecture with optimized distribution:
 
+### Development Structure
 - **Entry Point**: `bin/ccrotate.js` - Main CLI interface using Commander.js
 - **Core Logic**: `lib/ccrotate.js` - CCRotate class containing all functionality
-- **Module Export**: `index.js` - Simple module export for programmatic use
+- **Command Pattern**: `lib/commands/*.js` - Individual command implementations
+- **Components**: `lib/components/*.js` - React Ink UI components
+- **Utilities**: `lib/utils/*.js` - Helper functions and utilities
+
+### Production Distribution
+- **Single Executable**: `dist/cli.js` - Bundled CLI with all dependencies
+- **Zero Dependencies**: Users install no additional packages
+- **Build System**: esbuild for fast bundling and minification
 
 ### Key Components
 
@@ -20,6 +28,21 @@ The project follows a simple Node.js CLI architecture:
   - Manages profiles in `~/.ccrotate/profiles.json`
   - Interacts with Claude's config files (`~/.claude/.credentials.json`, `~/.claude.json`)
   - Implements atomic file operations for safe credential switching
+  - Uses command pattern for better code organization
+
+- **Command Classes** (`lib/commands/*.js`): Individual command implementations
+  - `SnapCommand`: Save current account
+  - `ListCommand`: Display accounts with React Ink UI  
+  - `SwitchCommand`: Switch to specific account
+  - `NextCommand`: Rotate to next account
+  - `RemoveCommand`: Remove saved account
+  - `RefreshCommand`: Test and refresh tokens
+  - `ExportCommand`: Export profiles with compression
+  - `ImportCommand`: Import profiles with CRC verification
+
+- **UI Components** (`lib/components/*.js`): Interactive displays
+  - `AccountsList`: Beautiful account listing with status indicators
+  - `RefreshView`: Real-time account testing interface
 
 ### Data Flow
 
@@ -35,14 +58,34 @@ The project follows a simple Node.js CLI architecture:
 pnpm install
 ```
 
-**Test the CLI locally:**
+**Development build (with sourcemap):**
+```bash
+pnpm run build:dev
+```
+
+**Production build (minified):**
+```bash
+pnpm run build
+```
+
+**Test the CLI locally (source):**
 ```bash
 node bin/ccrotate.js --help
 ```
 
-**Install globally for testing:**
+**Test the built CLI:**
 ```bash
-npm install -g .
+./dist/cli.js --help
+```
+
+**Package testing:**
+```bash
+pnpm run publish:dist:dry
+```
+
+**Publish to npm:**
+```bash
+pnpm run publish:dist
 ```
 
 ## Key CLI Commands
@@ -52,6 +95,9 @@ npm install -g .
 - `ccrotate switch <email>` - Switch to specific account
 - `ccrotate next` - Switch to next account in rotation
 - `ccrotate remove <email>` (alias: `rm`) - Remove saved account
+- `ccrotate refresh` (alias: `rf`) - Test all accounts and refresh tokens
+- `ccrotate export` - Export all profiles as compressed string
+- `ccrotate import <data>` - Import profiles from compressed string
 
 ## File Structure
 
@@ -61,9 +107,17 @@ npm install -g .
 
 ## Dependencies
 
+### Runtime Dependencies (bundled in dist/cli.js)
 - `chalk` - Terminal colors and styling
 - `commander` - CLI framework
 - `prompts` - Interactive prompts for confirmations
+- `ink` + `react` - Interactive CLI components
+- `msgpack-lite` - Efficient data compression for export/import
+
+### Development Dependencies
+- `esbuild` - Fast bundling and minification
+- `vitest` - Testing framework
+- `@vitest/ui` - Test UI interface
 
 ## Important Implementation Details
 
@@ -72,3 +126,8 @@ npm install -g .
 - The tool maintains compatibility with `claude-code`'s authentication system
 - Error handling provides user-friendly messages for common scenarios
 - Profiles include `lastUsed` timestamp for rotation logic
+- Export/import uses MessagePack + Gzip + Base64 for efficient compression
+- CRC32 verification ensures data integrity during import
+- Account testing uses actual claude calls to verify token validity
+- Build system creates single executable with all dependencies bundled
+- Distribution via `dist/` directory publishing (not root package.json)
