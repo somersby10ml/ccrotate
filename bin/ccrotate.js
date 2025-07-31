@@ -3,7 +3,7 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import CCRotate from '../lib/ccrotate.js';
-const version = process.env.CCROTATE_VERSION || '1.0.11';
+const version = process.env.CCROTATE_VERSION || '1.0.12';
 
 const program = new Command();
 const ccrotate = new CCRotate();
