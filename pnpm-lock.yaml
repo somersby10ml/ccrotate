@@ -30,6 +30,9 @@ importers:
       '@vitest/ui':
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
+      esbuild:
+        specifier: 0.25.8
+        version: 0.25.8
       vitest:
         specifier: 3.2.4
         version: 3.2.4(@vitest/ui@3.2.4)
