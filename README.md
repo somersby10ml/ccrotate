@@ -65,7 +65,7 @@ ccrotate switch user2@example.com
 ```
 
 ### ⏭️ `ccrotate next`
-Rotate to the next account in your saved list.
+Rotate to the next account in your saved list. Automatically saves the current account before switching.
 
 ```bash
 ccrotate next
